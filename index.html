@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Generate launch-ready memecoin names, tickers, lore, and visual hooks." />
+  <title>Meta Forge — Memecoin Narrative Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">M</span><span>META FORGE</span><em>LABS</em></a>
+    <div class="top-meta"><span class="status-dot"></span> LOCAL ENGINE <kbd>⌘</kbd><kbd>K</kbd></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span></span> NARRATIVE → NAME → TICKER</div>
+      <h1>Find the name<br><i>before the timeline does.</i></h1>
+      <p>Turn any character, event, animal, or cultural moment into hundreds of scored, launch-ready memecoin identities.</p>
+    </section>
+
+    <section class="control-panel" aria-label="Generator controls">
+      <div class="command-line">
+        <span class="slash">/meta</span>
+        <label><span>PRIMARY META</span><input id="primary" value="cat" placeholder="cat, pepe, trump…" autocomplete="off" /></label>
+        <span class="plus">+</span>
+        <label><span>CONTEXT / NARRATIVE</span><input id="context" value="bull market" placeholder="AI, crash, alien invasion…" autocomplete="off" /></label>
+        <button id="generate" class="generate"><span>GENERATE NAMES</span><b>↗</b></button>
+      </div>
+      <div class="secondary-controls">
+        <label class="keywords"><span>ADDITIONAL SIGNALS</span><input id="keywords" placeholder="wall street, red cape, revenge" /></label>
+        <label class="select-wrap"><span>OUTPUT</span><select id="count"><option>200</option><option selected>250</option><option>300</option><option>400</option><option>500</option></select></label>
+        <label class="range-wrap"><span>CREATIVITY <b id="creativityValue">72</b></span><input id="creativity" type="range" min="10" max="100" value="72" /></label>
+        <div class="modes" role="group" aria-label="Generation modes">
+          <button class="mode active" data-mode="trenches">⚡ Trenches</button>
+          <button class="mode" data-mode="brandable">◇ Brandable</button>
+          <button class="mode" data-mode="absurd">✦ Absurd</button>
+          <button class="mode" data-mode="narrative">▤ Narrative</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="results hidden">
+      <div class="results-head">
+        <div><div class="eyebrow"><span></span> GENERATED INTELLIGENCE</div><h2><span id="resultCount">0</span> names from the forge</h2><p id="contextSummary"></p></div>
+        <div class="head-actions"><button id="regenerate" class="ghost">↻ Regenerate</button><button id="exportCsv" class="ghost">⇩ Export CSV</button></div>
+      </div>
+
+      <div class="stats">
+        <article><span>TOP SCORE</span><strong id="topScore">—</strong><small>launch signal</small></article>
+        <article><span>UNIQUE TICKERS</span><strong id="tickerCount">—</strong><small>collision checked</small></article>
+        <article><span>CONCEPT CLUSTERS</span><strong id="clusterCount">10</strong><small>creative systems</small></article>
+        <article><span>FAVORITES</span><strong id="favoriteCount">0</strong><small>saved locally</small></article>
+      </div>
+
+      <div class="toolbar">
+        <label class="search"><span>⌕</span><input id="search" placeholder="Search names, tickers, tags…" /></label>
+        <select id="category"><option value="">All categories</option></select>
+        <label class="score-filter">MIN SCORE <input id="minScore" type="range" min="1" max="100" value="1"><b id="minScoreValue">1</b></label>
+        <button id="favoritesOnly" class="filter-button">♡ Favorites</button>
+      </div>
+
+      <div class="table-shell">
+        <table><thead><tr><th>#</th><th>NAME / SIGNAL</th><th>TICKER</th><th>SCORE</th><th>CATEGORY</th><th>WHY IT WORKS</th><th>TAGS</th><th></th></tr></thead><tbody id="nameRows"></tbody></table>
+        <div id="emptyState" class="empty hidden">No signals match these filters.</div>
+      </div>
+      <button id="showMore" class="show-more">SHOW MORE SIGNALS <span>↓</span></button>
+    </section>
+  </main>
+
+  <aside id="detailDrawer" class="drawer" aria-hidden="true">
+    <div class="drawer-backdrop" data-close></div>
+    <section class="drawer-card">
+      <button class="drawer-close" data-close>×</button>
+      <div class="eyebrow"><span></span> SIGNAL LAB</div>
+      <h2 id="detailName"></h2><div class="detail-ticker" id="detailTicker"></div>
+      <p id="detailExplanation"></p>
+      <div id="detailTags" class="detail-tags"></div>
+      <h3>Push the concept</h3>
+      <div class="action-grid">
+        <button data-action="similar">More like this</button><button data-action="shorter">Shorter versions</button>
+        <button data-action="absurd">More absurd</button><button data-action="crypto">More crypto-native</button>
+        <button data-action="narrative">More narrative</button><button data-action="spellings">Spelling variants</button>
+        <button data-action="characters">Related characters</button><button data-action="tickers">Ticker alternatives</button>
+        <button data-action="lore">Potential lore</button><button data-action="logo">Logo concept</button>
+      </div>
+      <div id="labOutput" class="lab-output"><span>Select an angle to expand this signal.</span></div>
+    </section>
+  </aside>
+  <div id="toast" class="toast"></div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
